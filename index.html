@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudDrop AI | سحابتك الذكية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background: #020617; color: #f8fafc; }
+        .drop-zone { border: 2px dashed #3b82f6; transition: all 0.3s ease; }
+        .drop-zone.active { background: rgba(59, 130, 246, 0.1); border-color: #60a5fa; scale: 1.02; }
+        .glass { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-10 flex flex-col items-center">
+
+    <header class="w-full max-w-4xl flex justify-between items-center mb-12">
+        <div class="flex items-center gap-3">
+            <div class="bg-blue-600 p-2.5 rounded-2xl shadow-lg shadow-blue-500/20">
+                <i data-lucide="cloud-upload" class="text-white w-6 h-6"></i>
+            </div>
+            <h1 class="text-2xl font-bold tracking-tight">CloudDrop <span class="text-blue-500 text-sm">PRO</span></h1>
+        </div>
+        <div class="text-[10px] text-slate-500 font-mono bg-slate-900 px-4 py-1.5 rounded-full border border-slate-800">
+            Storage Status: Connected
+        </div>
+    </header>
+
+    <main class="w-full max-w-4xl space-y-8">
+        <div id="dropZone" class="drop-zone glass rounded-[2.5rem] p-12 flex flex-col items-center justify-center cursor-pointer">
+            <input type="file" id="fileInput" class="hidden" multiple>
+            <div class="bg-blue-500/10 p-5 rounded-full mb-4">
+                <i data-lucide="upload-cloud" class="w-10 h-10 text-blue-500"></i>
+            </div>
+            <h2 class="text-xl font-bold mb-2">اسحب الملفات هنا أو اضغط للاختيار</h2>
+            <p class="text-slate-400 text-sm italic">ارفع صور، مستندات، أو ملفات برمجية إلى سحابتك</p>
+        </div>
+
+        <div class="space-y-4">
+            <h3 class="text-sm font-bold text-slate-400 flex items-center gap-2">
+                <i data-lucide="list" class="w-4 h-4"></i> الملفات المرفوعة حديثاً
+            </h3>
+            <div id="fileList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                </div>
+        </div>
+    </main>
+
+    <div id="uploadLoader" class="hidden fixed inset-0 bg-slate-950/80 z-[100] flex flex-col items-center justify-center">
+        <div class="w-16 h-1 bg-slate-800 rounded-full overflow-hidden mb-4">
+            <div class="w-1/3 h-full bg-blue-500 animate-[shimmer_1.5s_infinite]"></div>
+        </div>
+        <p class="text-sm font-bold text-blue-400">جاري الرفع إلى السحابة...</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
